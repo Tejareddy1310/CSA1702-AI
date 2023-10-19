@@ -1,0 +1,14 @@
+symptom(flu, fever).
+symptom(flu, cough).
+symptom(flu, headache).
+symptom(cold, runny_nose).
+symptom(cold, sneezing).
+symptom(cold, sore_throat).
+
+% Rule to diagnose diseases based on symptoms
+diagnose(Disease, Symptoms) :-
+    setof(Disease, (member(Symptom, Symptoms), symptom(Disease, Symptom)), Diseases),
+    length(Diseases, NumberOfDiseases),
+    NumberOfDiseases > 0,
+    NumberOfDiseases = 1,
+    Diseases = [Disease].
